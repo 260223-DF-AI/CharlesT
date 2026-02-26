@@ -92,10 +92,11 @@ def display_all_contacts(contacts):
     # Iterate through contacts list and display relevant info
     # TODO: generate space in between each column to look like the expected output
     for i, contact in enumerate(contacts):
-        print(f"{i}{" " * 3}{contact["name"]}{" " * 18}{contact["phone"]} | {contact["category"]}")
+        print(f"{i + 1}{" " * 3}{contact["name"]}{" " * 18}{contact["phone"]} | {contact["category"]}")
+        print(f"{i + 1:>{count_spacer_len}}")
 
 
-def display_contact_details(contact):
+def display_contact_details(contact : dict) -> None:
     """
     Display detailed information for a single contact.
     
