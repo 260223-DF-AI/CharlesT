@@ -133,6 +133,7 @@ def search_by_name(contacts, query):
     # TODO: Filter contacts where query is in name (case-insensitive)
     # Hint: Use list comprehension and .lower()
     
+    # Initialized list for storing multiple contacts if applicable
     matched = []
 
     # Scan through 
@@ -152,7 +153,16 @@ def filter_by_category(contacts, category):
         List of contacts matching the category
     """
     # TODO: Filter contacts by category
-    pass
+    
+    matched = []
+
+    # Scan through 
+    for contact in contacts:
+        curr_category = contact["category"].lower()
+        if curr_category == category.lower():
+            matched.append(contact)
+
+    return matched
 
 
 def find_by_phone(contacts, phone):
@@ -163,7 +173,13 @@ def find_by_phone(contacts, phone):
         The contact dictionary if found, None otherwise
     """
     # TODO: Search for contact with matching phone
-    pass
+    
+    for contact in contacts:
+        curr_phone = contact["phone"]
+        if curr_phone == phone:
+            return contact
+
+    return None
 
 
 # =============================================================================
@@ -265,7 +281,13 @@ if __name__ == "__main__":
     # TODO: Test your functions
     display_all_contacts(contacts)
     display_contact_details(contacts[0])
-    results = search_by_name(contacts, "alice")
+
+    print("\nfind by phone test")
+    results = find_by_phone(contacts, "555-456-7890")
+    print(results)
+
+    print("\nfilter by category test")
+    results = filter_by_category(contacts, "family")
     print(results)
     # etc.
     
