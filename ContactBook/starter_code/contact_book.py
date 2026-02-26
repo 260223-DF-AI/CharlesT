@@ -202,7 +202,16 @@ def update_contact(contacts, phone, field, new_value):
     # TODO: Find contact by phone
     # TODO: Update the specified field
     # TODO: Return success/failure
-    pass
+    
+    # Iterate through contacts for specific phone query
+    for contact in contacts:
+        curr_phone = contact["phone"]
+        if curr_phone == phone:
+            # Set the found contacts entered field into the new value provided
+            contact[field] = new_value
+            return True
+        else:
+            return False
 
 
 def delete_contact(contacts, phone):
@@ -213,7 +222,15 @@ def delete_contact(contacts, phone):
         True if deleted, False if not found
     """
     # TODO: Find and remove contact with matching phone
-    pass
+    
+    for contact in contacts:
+        curr_phone = contact["phone"]
+        if curr_phone == phone:
+            # Remove contact if found
+            contacts.remove(contact)
+            return True
+        else:
+            return False
 
 
 # =============================================================================
