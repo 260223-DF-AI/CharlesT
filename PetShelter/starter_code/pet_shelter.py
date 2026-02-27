@@ -250,17 +250,20 @@ class Shelter:
         """Find an animal by name."""
         # TODO: Loop through animals and return one with matching name
         # TODO: Return None if not found
-        pass
+        for current_animal in self.animals:
+            if name.lower == current_animal.name.lower:
+                return current_animal
+        return None
     
     def list_available(self):
         """List all animals available for adoption."""
         # TODO: Return list of animals where is_adopted() is False
-        pass
+        return [animal for animal in self.animals if not animal.is_adopted()]
     
     def list_by_species(self, species):
         """List all animals of a specific species."""
         # TODO: Filter self.animals by species
-        pass
+        return [animal for animal in self.animals if animal.species() == species]
     
     def adopt_animal(self, name):
         """Adopt an animal by name."""
