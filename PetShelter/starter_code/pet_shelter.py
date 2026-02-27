@@ -213,17 +213,20 @@ class Kitten(Cat):
         # TODO: Convert months to years
         # TODO: Call parent constructor
         # TODO: Store age_months
-        pass
+        age_years = age_months / 12
+        super().__init__(name, age_years, color, is_indoor=True)
+        self.age_months = age_months
     
     def speak(self):
         """Kittens mew."""
         # TODO: Return "{name} says Mew! Mew!"
-        pass
+        return f"{self.name} says Mew! Mew!"
     
     def describe(self):
         """Show age in months for kittens."""
         # TODO: Similar to Puppy.describe()
-        pass
+        status = "adopted" if self._adopted else "available"
+        return f"{self.name} is a {self.age_months}-month-old {self.color} kitten ({status})"
 
 
 # =============================================================================
