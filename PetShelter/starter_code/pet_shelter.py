@@ -115,12 +115,14 @@ class Cat(Animal):
         # TODO: Call parent constructor with species="Cat"
         # TODO: Set self.color
         # TODO: Set self.is_indoor
-        pass
+        super().__init__(name, age, "Cat")
+        self.color = color
+        self.is_indoor = is_indoor
     
     def speak(self):
         """Cats meow."""
         # TODO: Return "{name} says Meow!"
-        pass
+        return f"{self.name} says Meow!"
     
     def scratch(self):
         """Cats scratch."""
@@ -130,7 +132,8 @@ class Cat(Animal):
         """Override to include color and indoor status."""
         # TODO: Get base description from parent
         # TODO: Add color and indoor/outdoor status
-        pass
+        status = "indoor" if self.is_indoor else "outdoor"
+        return f"{self.name} is a {self.color}, {self.age}-year-old {self.species} ({status})"
 
 
 # =============================================================================
@@ -179,17 +182,18 @@ class ServiceDog(Dog):
         """
         # TODO: Call parent constructor with is_trained=True
         # TODO: Set self.service_type
-        pass
+        super().__init__(name, age, breed, is_trained=True)
+        self.service_type = service_type
     
     def perform_service(self):
         """Perform the dog's service."""
         # TODO: Return "{name} performs {service_type} duties."
-        pass
+        return f"{self.name} performs {self.service_type} duties."
     
     def describe(self):
         """Include service type in description."""
         # TODO: Get base description and add service type
-        pass
+        return f"{self.name} is a {self.age}-year-old {self.breed} service dog"
 
 
 class Kitten(Cat):
