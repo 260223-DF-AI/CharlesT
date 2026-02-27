@@ -132,8 +132,9 @@ class Cat(Animal):
         """Override to include color and indoor status."""
         # TODO: Get base description from parent
         # TODO: Add color and indoor/outdoor status
+        base_desc = super().describe()
         status = "indoor" if self.is_indoor else "outdoor"
-        return f"{self.name} is a {self.color}, {self.age}-year-old {self.species} ({status})"
+        return f"{base_desc} - {self.color}, {status}"
 
 
 # =============================================================================
@@ -193,7 +194,8 @@ class ServiceDog(Dog):
     def describe(self):
         """Include service type in description."""
         # TODO: Get base description and add service type
-        return f"{self.name} is a {self.age}-year-old {self.breed} service dog"
+        base_desc = super().describe()
+        return f"{base_desc} ({self.service_type} service dog)"
 
 
 class Kitten(Cat):
