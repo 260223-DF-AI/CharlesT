@@ -319,9 +319,13 @@ def main():
     # Add various animals (using completed classes)
     shelter.add_animal(Dog("Buddy", 3, "Golden Retriever", True))
     # TODO: Add a Cat
+    shelter.add_animal(Cat("Kit", 3, "Black"))
     # TODO: Add a Puppy
+    shelter.add_animal(Puppy("Chubby", 8, "Dachshund"))
     # TODO: Add a ServiceDog
+    shelter.add_animal(ServiceDog("Rex", 7, "German Shepard", "Guide"))
     # TODO: Add a Kitten
+    shelter.add_animal(Kitten("Bity", 5, "White w/ Black Spots"))
     
     # Display all animals
     shelter.display_all()
