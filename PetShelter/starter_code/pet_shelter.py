@@ -115,16 +115,16 @@ class Cat(Animal):
             color: Cat's color/pattern
             is_indoor: Whether the cat is indoor-only
         """
-        # TODO: Call parent constructor with species="Cat"
-        # TODO: Set self.color
-        # TODO: Set self.is_indoor
+        # DONE: Call parent constructor with species="Cat"
+        # DONE: Set self.color
+        # DONE: Set self.is_indoor
         super().__init__(name, age, "Cat")
         self.color = color
         self.is_indoor = is_indoor
     
     def speak(self):
         """Cats meow."""
-        # TODO: Return "{name} says Meow!"
+        # DONE: Return "{name} says Meow!"
         return f"{self.name} says Meow!"
     
     def scratch(self):
@@ -133,8 +133,8 @@ class Cat(Animal):
     
     def describe(self):
         """Override to include color and indoor status."""
-        # TODO: Get base description from parent
-        # TODO: Add color and indoor/outdoor status
+        # DONE: Get base description from parent
+        # DONE: Add color and indoor/outdoor status
         base_desc = super().describe()
         status = "indoor" if self.is_indoor else "outdoor"
         return f"{base_desc} - {self.color}, {status}"
@@ -184,19 +184,19 @@ class ServiceDog(Dog):
             breed: Dog breed
             service_type: Type of service (e.g., "guide", "therapy", "search")
         """
-        # TODO: Call parent constructor with is_trained=True
-        # TODO: Set self.service_type
+        # DONE: Call parent constructor with is_trained=True
+        # DONE: Set self.service_type
         super().__init__(name, age, breed, is_trained=True)
         self.service_type = service_type
     
     def perform_service(self):
         """Perform the dog's service."""
-        # TODO: Return "{name} performs {service_type} duties."
+        # DONE: Return "{name} performs {service_type} duties."
         return f"{self.name} performs {self.service_type} duties."
     
     def describe(self):
         """Include service type in description."""
-        # TODO: Get base description and add service type
+        # DONE: Get base description and add service type
         base_desc = super().describe()
         return f"{base_desc} ({self.service_type} service dog)"
 
@@ -213,21 +213,21 @@ class Kitten(Cat):
             age_months: Age in months
             color: Kitten's color/pattern
         """
-        # TODO: Convert months to years
-        # TODO: Call parent constructor
-        # TODO: Store age_months
+        # DONE: Convert months to years
+        # DONE: Call parent constructor
+        # DONE: Store age_months
         age_years = age_months / 12
         super().__init__(name, age_years, color, is_indoor=True)
         self.age_months = age_months
     
     def speak(self):
         """Kittens mew."""
-        # TODO: Return "{name} says Mew! Mew!"
+        # DONE: Return "{name} says Mew! Mew!"
         return f"{self.name} says Mew! Mew!"
     
     def describe(self):
         """Show age in months for kittens."""
-        # TODO: Similar to Puppy.describe()
+        # DONE: Similar to Puppy.describe()
         status = "adopted" if self._adopted else "available"
         return f"{self.name} is a {self.age_months}-month-old {self.color} kitten ({status})"
 
@@ -251,8 +251,8 @@ class Shelter:
     
     def find_by_name(self, name):
         """Find an animal by name."""
-        # TODO: Loop through animals and return one with matching name
-        # TODO: Return None if not found
+        # DONE: Loop through animals and return one with matching name
+        # DONE: Return None if not found
         for current_animal in self.animals:
             if name.lower == current_animal.name.lower:
                 return current_animal
@@ -260,7 +260,7 @@ class Shelter:
     
     def list_available(self):
         """List all animals available for adoption."""
-        # TODO: Return list of animals where is_adopted() is False
+        # DONE: Return list of animals where is_adopted() is False
         filter = [str(animal) for animal in self.animals if not animal.is_adopted()]
         if len(filter) > 0:
             return filter
@@ -268,7 +268,7 @@ class Shelter:
     
     def list_by_species(self, species):
         """List all animals of a specific species."""
-        # TODO: Filter self.animals by species
+        # DONE: Filter self.animals by species
         filter = [str(animal) for animal in self.animals if animal.species == species]
         if len(filter) > 0:
             return filter
