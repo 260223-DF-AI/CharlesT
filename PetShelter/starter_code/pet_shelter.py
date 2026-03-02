@@ -60,7 +60,10 @@ class Animal:
     
     def __str__(self):
         """String representation."""
-        return f"{self.species}: {self.name} (Age: {self.age})"
+        if self.age >= 1:
+            return f"{self.species}: {self.name} (Age: {self.age})"
+        elif self.age < 1:
+            return f"{self.species}: {self.name} (Age (Months): {self.age_months})"
 
 
 # =============================================================================
@@ -166,9 +169,6 @@ class Puppy(Dog):
         """Show age in months for puppies."""
         status = "adopted" if self._adopted else "available"
         return f"{self.name} is a {self.age_months}-month-old {self.breed} puppy ({status})"
-    
-    def __str__(self):
-        return f"{self.species}: {self.name} (Age (Months): {self.age_months})"
 
 
 class ServiceDog(Dog):
@@ -230,9 +230,6 @@ class Kitten(Cat):
         # TODO: Similar to Puppy.describe()
         status = "adopted" if self._adopted else "available"
         return f"{self.name} is a {self.age_months}-month-old {self.color} kitten ({status})"
-    
-    def __str__(self):
-        return f"{self.species}: {self.name} (Age (Months): {self.age_months})"
 
 
 # =============================================================================
@@ -360,7 +357,7 @@ def main():
     # Prints out the __str__ method for Dog (inherited from Animal)
     print(shelter.find_by_name("Buddy"))
     # Displays all animals
-    print(shelter.list_available())
+    print(f"\n--- Available Shelter Animals ---\n{shelter.list_available()}")
 
 
 
