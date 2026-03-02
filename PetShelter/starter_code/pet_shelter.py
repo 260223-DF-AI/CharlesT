@@ -261,12 +261,18 @@ class Shelter:
     def list_available(self):
         """List all animals available for adoption."""
         # TODO: Return list of animals where is_adopted() is False
-        return [str(animal) for animal in self.animals if not animal.is_adopted()]
+        filter = [str(animal) for animal in self.animals if not animal.is_adopted()]
+        if len(filter) > 0:
+            return filter
+        return None
     
     def list_by_species(self, species):
         """List all animals of a specific species."""
         # TODO: Filter self.animals by species
-        return [animal for animal in self.animals if animal.species() == species]
+        filter = [str(animal) for animal in self.animals if animal.species == species]
+        if len(filter) > 0:
+            return filter
+        return None
     
     def adopt_animal(self, name):
         """Adopt an animal by name."""
@@ -321,13 +327,13 @@ def main():
     
     # Add various animals (using completed classes)
     shelter.add_animal(Dog("Buddy", 3, "Golden Retriever", True))
-    # TODO: Add a Cat
+    # DONE: Add a Cat
     shelter.add_animal(Cat("Kit", 3, "Black"))
-    # TODO: Add a Puppy
+    # DONE: Add a Puppy
     shelter.add_animal(Puppy("Chubby", 8, "Dachshund"))
-    # TODO: Add a ServiceDog
+    # DONE: Add a ServiceDog
     shelter.add_animal(ServiceDog("Rex", 7, "German Shepard", "Guide"))
-    # TODO: Add a Kitten
+    # DONE: Add a Kitten
     shelter.add_animal(Kitten("Bity", 5, "White w/ Black Spots"))
     
     # Display all animals
@@ -353,11 +359,18 @@ def main():
 
     # Show remaining features
     print("\n")
-    print("--- Showcase of Remaining Features ---")
+    
+    print("--- Find Animal ---")
     # Prints out the __str__ method for Dog (inherited from Animal)
     print(shelter.find_by_name("Buddy"))
+    
     # Displays all animals
     print(f"\n--- Available Shelter Animals ---\n{shelter.list_available()}")
+
+    # Displays animals filtered by a specified species
+    print(f"\n--- Filtered Animal Type (Dog) ---\n{shelter.list_by_species("Dog")}")
+    print(f"\n--- Filtered Animal Type (Cat) ---\n{shelter.list_by_species("Cat")}")
+    print(f"\n--- Filtered Animal Type (Lizard) ---\n{shelter.list_by_species("Lizard")}")
 
 
 
