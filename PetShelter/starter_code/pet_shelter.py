@@ -166,6 +166,9 @@ class Puppy(Dog):
         """Show age in months for puppies."""
         status = "adopted" if self._adopted else "available"
         return f"{self.name} is a {self.age_months}-month-old {self.breed} puppy ({status})"
+    
+    def __str__(self):
+        return f"{self.species}: {self.name} (Age (Months): {self.age_months})"
 
 
 class ServiceDog(Dog):
@@ -227,6 +230,9 @@ class Kitten(Cat):
         # TODO: Similar to Puppy.describe()
         status = "adopted" if self._adopted else "available"
         return f"{self.name} is a {self.age_months}-month-old {self.color} kitten ({status})"
+    
+    def __str__(self):
+        return f"{self.species}: {self.name} (Age (Months): {self.age_months})"
 
 
 # =============================================================================
@@ -258,7 +264,7 @@ class Shelter:
     def list_available(self):
         """List all animals available for adoption."""
         # TODO: Return list of animals where is_adopted() is False
-        return [animal for animal in self.animals if not animal.is_adopted()]
+        return [str(animal) for animal in self.animals if not animal.is_adopted()]
     
     def list_by_species(self, species):
         """List all animals of a specific species."""
@@ -347,6 +353,15 @@ def main():
     print(f"  Available: {stats['available']}")
     print(f"  Adopted: {stats['adopted']}")
     print(f"  By Species: {stats['by_species']}")
+
+    # Show remaining features
+    print("\n")
+    print("--- Showcase of Remaining Features ---")
+    # Prints out the __str__ method for Dog (inherited from Animal)
+    print(shelter.find_by_name("Buddy"))
+    # Displays all animals
+    print(shelter.list_available())
+
 
 
 if __name__ == "__main__":
