@@ -1,8 +1,8 @@
 """Task Manager package - A simple CLI task management application."""
 
-from src.task_manager.models.task import Task
-from src.task_manager.utils.validators import validate_title, ValidationError
-from src.task_manager.utils.formatters import format_task_list, format_date
+from task_manager.models.task import Task
+from task_manager.utils.validators import validate_title, ValidationError
+from task_manager.utils.formatters import format_task_list, format_date
 
 __version__ = "1.0.0"
 __all__ = [
