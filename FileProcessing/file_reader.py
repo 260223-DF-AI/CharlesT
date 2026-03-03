@@ -14,6 +14,7 @@ def read_csv_file(filepath):
     
     with open(filepath, "r") as f:
         for i, line in enumerate(f):
+            line = line.strip("\n") # unsure if there is a better way to do this, but temp. for now
             if i == 0:
                 column_names = line.split(",")
             else:
@@ -29,6 +30,7 @@ def read_csv_file(filepath):
     print(records)
 
 def save_report(data, filename):
+    """This is currently being used for testing purposes"""
     with open(filename, "w") as f:
         f.write(f"Testing\n\n")
         for record in data:
@@ -36,7 +38,7 @@ def save_report(data, filename):
             f.write(f"Store ID: {record['store_id']}\n")
             f.write(f"Product: {record['product']}\n")
             f.write(f"Quantity: {record['quantity']}\n")
-            f.write(f"Price: {record['price\n']}\n\n")
+            f.write(f"Price: {record['price']}\n\n")
             f.write(f"-"*20 + "\n")
 
 read_csv_file("starter_code/sample_sales.csv")
