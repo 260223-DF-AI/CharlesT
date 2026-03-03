@@ -1,7 +1,7 @@
 """Tests for the Task model."""
 
 import pytest
-from ToDoManager.task_manager.src.task_manager.models.task import Task
+from src.task_manager.models.task import Task
 
 
 class TestTask:
