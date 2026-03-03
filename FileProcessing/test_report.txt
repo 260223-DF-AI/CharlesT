@@ -1,0 +1,57 @@
+Testing
+
+Date: 2024-01-15
+Store ID: STORE001
+Product: Widget A
+Quantity: 10
+Price: 29.99
+
+
+--------------------
+Date: 2024-01-15
+Store ID: STORE002
+Product: Gadget B
+Quantity: 5
+Price: 49.99
+
+
+--------------------
+Date: invalid-date
+Store ID: STORE001
+Product: Widget A
+Quantity: 3
+Price: 29.99
+
+
+--------------------
+Date: 2024-01-16
+Store ID: STORE003
+Product: Widget C
+Quantity: -2
+Price: 19.99
+
+
+--------------------
+Date: 2024-01-16
+Store ID: 
+Product: Product X
+Quantity: 8
+Price: 15.00
+
+
+--------------------
+Date: 2024-01-16
+Store ID: STORE002
+Product: Gadget B
+Quantity: abc
+Price: 49.99
+
+
+--------------------
+Date: 2024-01-17
+Store ID: STORE001
+Product: Widget A
+Quantity: 12
+Price: 29.99
+
+--------------------
