@@ -11,6 +11,7 @@ def read_csv_file(filepath):
     
     Returns: List of dictionaries (one per row)
     Raises: FileProcessingError with descriptive message
+    TODO: Log errors
     """
     try:
         records = []
