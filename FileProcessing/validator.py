@@ -64,4 +64,12 @@ def validate_all_records(records):
     
     Returns: Tuple of (valid_records, error_list)
     """
-    pass
+    valid_records = []
+    error_list = []
+    for i, record in enumerate(records):
+        try:
+            valid_record = validate_sales_record(record, i+1)
+            valid_records.append(valid_record)
+        except FileProcessingError as e:
+            error_list.append(str(e))
+    return tuple((valid_records, error_list))
