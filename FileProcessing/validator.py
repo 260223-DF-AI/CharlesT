@@ -1,3 +1,5 @@
+from unittest import case
+
 from exceptions import *
 from datetime import date
 
@@ -21,39 +23,40 @@ def validate_sales_record(record:dict, line_number:int):
     the order of the sales. So the first sale would be line_number 1, the second sale would be line_number
     2, etc. This could be used for logging?
     """
-    
-
     for field in record:
         # if the field is empty, raise an error
         if record[field] == "":
-            raise MissingFieldError(str(field))
+            raise MissingFieldError(f"Line {line_number}: Missing required field: {field}")
         
-        # validate the date to ensure the format is correct
-        if field == "date":
-            try:
-                validate: bool = date.strptime(record[field],"%Y-%m-%d")
-                if not validate:
-                    raise InvalidDataError(f"Invaid date format: {record[field]}")
-            except ValueError:
-                raise InvalidDataError(f"Invalid date format: {record[field]}")
-            
-        # validate the quantity to ensure it is a positive integer
-        if field == "quantity":
-            try:
-                quantity = int(record[field])
-                if quantity <= 0:
-                    raise InvalidDataError(f"Quantity must be a positive integer: {record[field]}")
-            except ValueError:
-                raise InvalidDataError(f"Quantity must be a positive integer: {record[field]}")
-            
-        # Validate the price to ensure it is positive
-        if field == "price":
-            try:
-                price = float(record[line_number]["price"])
-                if price <= 0 or not isinstance(price, float): # Checks if price is positive and a float
-                    raise InvalidDataError(f"Price must be a positive number: {record[line_number]['price']}")
-            except ValueError:
-                raise InvalidDataError(f"Price must be a positive number: {record[line_number]['price']}")
+        match field:
+            # validate the date to ensure the format is correct
+            case "date":
+                try:
+                    validate: bool = date.strptime(record[field],"%Y-%m-%d")
+                    if not validate:
+                        raise InvalidDataError(f"Line {line_number}: Invalid date format: {record[field]}")
+                except ValueError:
+                    raise InvalidDataError(f"Line {line_number}: Invalid date format: {record[field]}")
+
+            # validate the quantity to ensure it is a positive integer
+            case "quantity":
+                try:
+                    record[field] = int(record[field])
+                    if record[field] <= 0:
+                        raise InvalidDataError(f"Line {line_number}: Quantity must be a positive integer: {record[field]}")
+                except ValueError:
+                    raise InvalidDataError(f"Line {line_number}: Quantity must be a positive integer: {record[field]}")
+                
+            # validate the price to ensure it is a positive float
+            case "price":
+                try:
+                    record[field] = float(record[field])
+                    if record[field] <= 0:
+                        raise InvalidDataError(f"Line {line_number}: Price must be a positive number: {record[field]}")
+                except ValueError:
+                    raise InvalidDataError(f"Line {line_number}: Price must be a positive number: {record[field]}")
+                
+    return record
 
 def validate_all_records(records):
     """
