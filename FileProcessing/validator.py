@@ -14,6 +14,7 @@ def validate_sales_record(record, line_number):
     Raises: InvalidDataError or MissingFieldError
 
     TODO: Check if regex could be used here for cleaner formatting
+    TODO: Might be understanding the purpose of record and line_number?
     """
     # Validate whether or not the record contains all required fields
     for field in ["date", "store_id", "product", "quantity", "price"]:
