@@ -1,3 +1,6 @@
+from datetime import datetime
+
+
 def write_summary_report(filepath, valid_records, errors, aggregations):
     """
     Write a formatted summary report.
@@ -10,7 +13,17 @@ def write_summary_report(filepath, valid_records, errors, aggregations):
     - Sales by store
     - Top 5 products
     """
-    pass
+    saved_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    with open(filepath, "w") as f:
+        f.write(f"""=== Sales Processing Report ===
+                Generated: {saved_time}
+
+                Processing Statistics:
+                - Total records processed: {len(valid_records) + len(errors)}
+                - Valid records: {len(valid_records)}
+                - Errors: {len(errors)}
+
+                Sales by Store:""")
 
 def write_clean_csv(filepath, records):
     """
