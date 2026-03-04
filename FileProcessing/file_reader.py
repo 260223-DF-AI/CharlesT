@@ -1,6 +1,7 @@
 from exceptions import *
 
 def parse(filepath) -> list[dict]:
+    """Parse the filepath and return a list of dictionaries"""
     records = []
     # iterate through each line of the file
     for i, line in enumerate(filepath):
@@ -34,16 +35,14 @@ def read_csv_file(filepath):
     """
     # try parsing through file with utf-8 encoding first
     try:
-        # opens file and uses utf-8 encoding
         with open(filepath, "r", encoding="utf-8") as f:
             # check if file is empty. raise error early
             if f.read(1) == "":
                 raise FileProcessingError(f"File '{filepath}' is empty")
             return parse(f)
+    # if utf-8 fails, try latin-1 encoding
     except UnicodeDecodeError as e:
-        # if utf-8 fails, try latin-1 encoding
         try:
-            # opens file and uses latin-1 encoding
             with open(filepath, "r", encoding="latin-1") as f:
                 # check if file is empty. raise error early
                 if f.read(1) == "":
