@@ -14,11 +14,19 @@ def read_csv_file(filepath):
     """
     try:
         records = []
-        with open(filepath, "r") as f:
+        # Opens file in "read" mode
+        with open(filepath, "r", encoding="utf-8") as f:
+            # Check if file is empty. Raise error early
+            if f.read(1) == "":
+                raise FileProcessingError(f"File '{filepath}' is empty")
+            
+            # Iterate through each line of the file
             for i, line in enumerate(f):
                 line = line.strip() # unsure if there is a better way to do this, but temp. for now
+                # Separate column names into their own list to pull from
                 if i == 0:
                     column_names = line.split(",")
+                # Append to a list containing each row in their own dict. entry
                 else:
                     entry = line.split(",")[0:5]
                     records.append({
@@ -28,10 +36,14 @@ def read_csv_file(filepath):
                         column_names[3]: entry[3],
                         column_names[4]: entry[4],
                     })
+            # print(records) # for testing purposes
+        return records
+    except UnicodeDecodeError:
+        raise FileProcessingError(f"File '{filepath}' is not a valid UTF-8 or Latin-1 encoded file")
     except FileNotFoundError:
         raise FileProcessingError(f"File '{filepath}' not found")
-
-    print(records) # for testing purposes
+    except Exception as e:
+        raise FileProcessingError(f"An error occurred while processing the file: {str(e)}")
 
 # def save_report(data, filename):
 #     """This is currently being used for testing purposes"""
@@ -45,5 +57,5 @@ def read_csv_file(filepath):
 #             f.write(f"Price: {record['price']}\n\n")
 #             f.write(f"-"*20 + "\n")
 
-# read_csv_file("starter_code/sample_sales.csv")
+# read_csv_file("starter_code/sample_sales_empty.csv")
 # # save_report(records, "test_report.txt")
