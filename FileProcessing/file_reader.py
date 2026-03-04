@@ -12,11 +12,16 @@ def read_csv_file(filepath):
     Returns: List of dictionaries (one per row)
     Raises: FileProcessingError with descriptive message
     TODO: Log errors
+    TODO: Check if the raise statements are correct. Unsure if the current formatting is right
     """
     try:
         records = []
         # Opens file in "read" mode
-        with open(filepath, "r", encoding="utf-8") as f:
+        with open(filepath, "r") as f:
+            # Check if the file is a valid UTF-8 or Latin-1 encoded file
+            if f.encoding not in ["utf-8", "latin-1"]:
+                raise UnicodeDecodeError(f"File '{filepath}' is not a valid UTF-8 or Latin-1 encoded file")
+
             # Check if file is empty. Raise error early
             if f.read(1) == "":
                 raise FileProcessingError(f"File '{filepath}' is empty")
