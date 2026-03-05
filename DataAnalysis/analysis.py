@@ -30,8 +30,7 @@ def explore_data(df:pd.DataFrame) -> None:
 --- Data types ---\n{df.dtypes}\n\n
 --- Missing values ---\n{df.isnull().sum()}\n\n
 --- Basic statistics for numeric columns ---\n{df.describe()}\n\n
---- Date range covered ---\n{df['order_date'].min()} to {df['order_date'].max()}
-""")
+--- Date range covered ---\n{df['order_date'].min()} to {df['order_date'].max()}""")
 
-df = load_data('starter_code/orders.csv')
-explore_data(df)
+# df = load_data('starter_code/orders.csv')
+# explore_data(df)
