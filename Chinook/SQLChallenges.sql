@@ -30,38 +30,38 @@ select * from actor where first_name = 'John';
 
 -- BASIC CHALLENGES
 -- List all customers (full name, customer id, and country) who are not in the USA
-
+SELECT (first_name || ' ' || last_name) AS full_name, customer_id, country FROM customer WHERE country != 'USA';
 
 -- List all customers from Brazil
-
+SELECT (first_name || ' ' || last_name) AS full_name, customer_id, country FROM customer WHERE country = 'Brazil';
 
 -- List all sales agents
-
+SELECT * FROM employee WHERE title = 'Sales Support Agent';
 
 -- Retrieve a list of all countries in billing addresses on invoices
-
+SELECT billing_country FROM invoice GROUP BY billing_country;
 
 -- Retrieve how many invoices there were in 2009, and what was the sales total for that year?
-
+SELECT COUNT(*), SUM(total) FROM invoice WHERE invoice_date >= '2009-01-01' AND invoice_date < '2010-01-01';
 
 -- (challenge: find the invoice count sales total for every year using one query)
-
+SELECT COUNT(*), SUM(total), EXTRACT(YEAR FROM invoice_date) AS year FROM invoice GROUP BY year ORDER BY year;
 
 -- how many line items were there for invoice #37
-
+SELECT total FROM invoice WHERE invoice_id = 37;
 
 -- how many invoices per country? BillingCountry  # of invoices -
 -- Retrieve the total sales per country, ordered by the highest total sales first.
-
+SELECT billing_country, COUNT(*), SUM(total) FROM invoice GROUP BY billing_country ORDER BY SUM(total) DESC;
 
 
 -- JOINS CHALLENGES
 -- Every Album by Artist
-
+SELECT a.title AS album_name, ar.name AS artist_name FROM album a JOIN artist ar ON a.artist_id = ar.artist_id;
 
 -- (inner keyword is optional for inner join)
 -- All songs of the rock genre
-
+SELECT t.name AS song_name, g.name AS genre_name FROM track t JOIN genre g ON t.genre_id = g.genre_id WHERE g.name = 'Rock';
 
 -- Show all invoices of customers from brazil (mailing address not billing)
 
