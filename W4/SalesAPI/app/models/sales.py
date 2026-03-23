@@ -1,0 +1,3 @@
+class sales:
+    # etc.
+    pass

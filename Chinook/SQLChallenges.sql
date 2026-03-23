@@ -48,7 +48,7 @@ SELECT COUNT(*), SUM(total) FROM invoice WHERE invoice_date >= '2009-01-01' AND 
 SELECT COUNT(*), SUM(total), EXTRACT(YEAR FROM invoice_date) AS year FROM invoice GROUP BY year ORDER BY year;
 
 -- how many line items were there for invoice #37
-SELECT total FROM invoice WHERE invoice_id = 37;
+SELECT COUNT(*) FROM invoice_line WHERE invoice_id = 37;
 
 -- how many invoices per country? BillingCountry  # of invoices -
 -- Retrieve the total sales per country, ordered by the highest total sales first.
