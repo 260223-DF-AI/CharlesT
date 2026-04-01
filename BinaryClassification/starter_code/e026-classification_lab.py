@@ -12,32 +12,33 @@ class PurchaseClassifier(nn.Module):
     """
     Task 1: Build the Model Architecture
     """
-    def __init__(self):
+    def __init__(self, input_size, output_size):
         # TODO: Initialize the parent class
+        super().__init__()
         
         # TODO: Define a linear layer (1 input -> 1 output)
-        pass
+        self.linear = nn.Linear(input_size, output_size)
         
     def forward(self, x):
         # TODO: Route x through the linear layer and return it
-        return None
+        return self.linear(x)
 
 def train_classifier():
     """
     Task 2: Train the Model with Scheduling
     """
     # 1. Instantiate the model
-    model = None # TODO: Instantiate PurchaseClassifier
+    model = PurchaseClassifier(input_size=1, output_size=1) # TODO: Instantiate PurchaseClassifier
     
     # 2. Define Loss, Optimizer, and Scheduler
     # TODO: Use BCEWithLogitsLoss
-    criterion = None
+    criterion = nn.BCEWithLogitsLoss()
     
     # TODO: Use Adam optimizer with lr=0.5
-    optimizer = None
+    optimizer = optim.Adam(model.parameters(), lr=0.5)
     
     # TODO: Use StepLR, step_size=20, gamma=0.5
-    scheduler = None
+    scheduler = optim.lr_scheduler.StepLR(optimizer, step_size=20, gamma=0.5)
     
     epochs = 100
     
@@ -47,22 +48,23 @@ def train_classifier():
         
         # --- THE 5 STEPS OF TRAINING ---
         # 1. Forward pass
-        predictions = None
+        predictions = model(X)
         
         # 2. Compute Loss
-        loss = None
+        loss = criterion(predictions, y)
         
         # 3. Zero gradients
-        
+        optimizer.zero_grad()
         
         # 4. Backward pass
-        
+        loss.backward()
         
         # 5. Optimizer step
-        
+        optimizer.step()
         
         # --- SCHEDULER STEP ---
         # TODO: Step the scheduler
+        scheduler.step()
         
         
         if (epoch + 1) % 20 == 0:
