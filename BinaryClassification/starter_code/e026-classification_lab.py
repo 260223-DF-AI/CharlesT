@@ -14,7 +14,7 @@ class PurchaseClassifier(nn.Module):
     """
     def __init__(self, input_size, output_size):
         # TODO: Initialize the parent class
-        super().__init__()
+        super(PurchaseClassifier, self).__init__()
         
         # TODO: Define a linear layer (1 input -> 1 output)
         self.linear = nn.Linear(input_size, output_size)
