@@ -20,19 +20,19 @@ class ModerationLSTM(nn.Module):
         self.fc = nn.Linear(hidden_dim, output_classes)
 
     def forward(self, x):
-        # 1. TODO: Pass input through the embedding layer
+        # 1. DONE: Pass input through the embedding layer
         embedded = self.embedding(x)
         
-        # 2. TODO: Pass embedded vectors through the LSTM
+        # 2. DONE: Pass embedded vectors through the LSTM
         # Remember it returns: output, (h_n, c_n)
         lstm_out, (h_n, c_n) = self.lstm(embedded)
         
-        # 3. TODO: Extract the hidden state of the final time step
+        # 3. DONE: Extract the hidden state of the final time step
         # Extract from h_n. Assuming a single layer, unidirectional LSTM, 
         # h_n shape is [1, batch_size, hidden_dim]. Get the 0th index.
         final_memory = h_n.squeeze(0)
         
-        # 4. TODO: Pass the final memory through the linear layer
+        # 4. DONE: Pass the final memory through the linear layer
         return self.fc(final_memory)
 
 def process_chat_logs():
@@ -58,7 +58,7 @@ def process_chat_logs():
     for i, msg in enumerate(chat_logs):
         print(f"  Msg {i+1}: {len(msg)} tokens")
         
-    # 1. TODO: Pad the sequences using pad_sequence
+    # 1. DONE: Pad the sequences using pad_sequence
     # Remember: batch_first=True, padding_value=0
     padded_batch = pad_sequence(chat_logs, batch_first=True, padding_value=0)
     
@@ -71,7 +71,7 @@ def process_chat_logs():
                            hidden_dim=32, 
                            output_classes=2)
                            
-    # 2. TODO: Pass the padded_batch through the model to get predictions
+    # 2. DONE: Pass the padded_batch through the model to get predictions
     model.eval()
     with torch.no_grad():
         predictions = model.forward(padded_batch)
@@ -85,18 +85,18 @@ def log_training_to_tensorboard():
     """
     print("\n--- TensorBoard Logging ---")
     
-    # TODO: Create a SummaryWriter that writes logs to 'runs/moderation_lstm'
+    # DONE: Create a SummaryWriter that writes logs to 'runs/moderation_lstm'
     writer = SummaryWriter("runs/moderation_lstm")
     
     if writer is not None:
-        # TODO: Simulate 5 training epochs.
+        # DONE: Simulate 5 training epochs.
         # For each epoch (0 through 4), calculate a decaying loss: loss = 1.0 / (epoch + 1)
         # Log it with: writer.add_scalar('Loss/train', loss, epoch)
         for epoch in range(5):
             loss = 1.0 / (epoch + 1)
             writer.add_scalar('Loss/train', loss, epoch)
         
-        # TODO: Close the writer when done.
+        # DONE: Close the writer when done.
         writer.close()        
         
         log_dir = 'runs/moderation_lstm'
